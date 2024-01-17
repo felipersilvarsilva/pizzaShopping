@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export function SignIn() {
   return (
@@ -12,8 +14,13 @@ export function SignIn() {
         </div>
 
         <form className="space-y-4">
-          <div className="space-y-2"></div>
-          <Button type="submit">Acessa painel</Button>
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input type="email" id="email" placeholder="Email" />
+          </div>
+          <Button className="w-full" type="submit">
+            Acessa painel
+          </Button>
         </form>
       </div>
     </div>
