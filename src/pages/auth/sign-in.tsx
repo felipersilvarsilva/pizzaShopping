@@ -1,8 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useForm } from "react-hook-form";
+import * as Z from "zod";
+import { toast } from "sonner";
+
+const signInForm = Z.object({
+  email: Z.string().email({ message: "Email inválido" }),
+});
+
+type TypeSignInForm = Z.infer<typeof signInForm>;
 
 export function SignIn() {
+  const {
+    handleSubmit,
+    register,
+    formState: { isSubmitting },
+  } = useForm<TypeSignInForm>();
+
+  async function handleSignIn(data: TypeSignInForm) {
+    try {
+      const { email } = data;
+      console.log(email);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      toast.success("enviamos um link para o email!");
+    } catch (error) {
+      toast.error("Email inválido");
+    }
+  }
+
   return (
     <div className="p-8">
       <div className="w[350px] felx flex-col justify-center gap-4">
@@ -13,12 +39,17 @@ export function SignIn() {
           </p>
         </div>
 
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit(handleSignIn)} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input type="email" id="email" placeholder="Email" />
+            <Input
+              type="email"
+              id="email"
+              placeholder="Email"
+              {...register("email")}
+            />
           </div>
-          <Button className="w-full" type="submit">
+          <Button disabled={isSubmitting} className="w-full" type="submit">
             Acessa painel
           </Button>
         </form>
