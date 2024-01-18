@@ -23,9 +23,14 @@ export function SignIn() {
       const { email } = data;
       console.log(email);
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      toast.success("enviamos um link para o email!");
+      toast.success("enviamos um link para o email!", {
+        action: {
+          label: "Reenviar",
+          onClick: () => handleSignIn(data),
+        },
+      });
     } catch (error) {
-      toast.error("Email inválido");
+      toast.error("Credenciais inválidas");
     }
   }
 
