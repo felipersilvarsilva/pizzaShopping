@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import * as Z from "zod";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
 
 const signInForm = Z.object({
   email: Z.string().email({ message: "Email inválido" }),
@@ -36,6 +37,10 @@ export function SignIn() {
 
   return (
     <div className="p-8">
+      <Button variant="secondary" asChild className="absolute top-8 right-8">
+        <Link to="/sign-up">Novo Estabelecimento</Link>
+      </Button>
+
       <div className="w[350px] felx flex-col justify-center gap-4">
         <div className="flex flex-col gap-2 text-center">
           <h1 className="text-2xl font-semibold">Acessar painel</h1>
