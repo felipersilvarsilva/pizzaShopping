@@ -2,10 +2,12 @@ import { Button } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
+import { Building, ChevronDown, LogOut } from "lucide-react";
 
 export function AccountMenu() {
   return (
@@ -26,6 +28,15 @@ export function AccountMenu() {
             u2bQr@example.com
           </span>
         </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem className="cursor-pointer ">
+          <Building className="mr-2 w-4 h-4" />
+          <span>Perfil da loja</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer  text-rose-500 dark:text-rose-400">
+          <LogOut className="mr-2 w-4 h-4" />
+          <span>sair</span>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
